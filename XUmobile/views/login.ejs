@@ -2,20 +2,36 @@
 
 <section id="main">
         <div id="loginwrap">
-        <section id="login">
+        <section id="login" class='common_bg'>
             <header id="logo">
                 <img src="images/login/logo.png" alt=""/>
             </header>
-            <section id="formwarp">
+            <section id="loginwrap">
                 <form action="#">
-                    <input type="text" id="username" class='input_unfocus' name="username" placeholder="请输入用户名或邮箱" />
-                    <input type="password" id="password"class='input_unfocus' name="password" placeholder="密码" />
+                    <input type="text" id="login_username" class='input_unfocus' name="username" placeholder="请输入用户名或邮箱" />
+                    <input type="password" id="login_password"class='input_unfocus' name="password" placeholder="密码" />
                     <!--注册按钮默认绿色，在填写表单数据通过本地验证后登陆按钮变绿-->
                     <input class='btn unava' type="button" id="confirmlogin" name="confirmlogin" value="登陆" />
-                    <input class='btn ava' id="register" name="register" value="创建用户" type="button"/>
+                    <input class='btn ava' id="register_button" name="register" value="创建用户" type="button"/>
                 </form>
             </section>
+           
             <footer id="errortip">您输入的密码有误。</footer>
+        </section>
+        <section id="register" class='common_bg'>
+         <header id="logo">
+                <img src="images/login/logo.png" alt=""/>
+            </header>
+             <section id="regwrap">
+                <form action="register" method='post'>
+                    <input type="text" id="reg_username" class='input_unfocus' name="username" placeholder="用户名" />
+                    <input type="text" id="reg_email" class='input_unfocus' name="username" placeholder="邮箱" />
+                    <input type="password" id="reg_password"class='input_unfocus' name="password" placeholder="密码" />
+                    <!--注册按钮默认绿色，在填写表单数据通过本地验证后登陆按钮变绿-->
+                    <input class='btn ava' id="register_post" name="register" value="点击注册" type="button"/>
+                    <footer id="errortip">您输入的密码有误。</footer>
+                </form>
+             </section>
         </section>
     </div>
 </section>

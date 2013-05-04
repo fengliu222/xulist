@@ -34,10 +34,10 @@ var projectModel = mdb.model("project",projectSchema);
 
 module.exports = {
     init:function(){
-        console.log("start connect");
         db=mdb.connect('mongodb://localhost/xulist');
     },
     register:function(username,password,email,role,department,callback){
+       console.log(email);
         var userdoc = {
             username:username,
             password:password,
@@ -56,14 +56,23 @@ module.exports = {
     },
     login:function(username,password){
         var emailreg=/[a-z0-9-]{1,30}@[a-z0-9-]{1,65}.[a-z]{3}/;
-
+        console.log(username);
         userModel.findOne({
             "$or":[{"username":username},{"email":username}]
         },function(err,user){
-            if(password == user.password){
-                //success
+            if(err || user==null) {
+                console.log(err);
+                return false;
             }else{
-                //failed
+                if(password == user.password){
+                    //success
+                    console.log(user);
+                    console.log("success");
+                }else{
+                    //failed
+                    console.log("fail")
+
+                }
             }
         });
     },

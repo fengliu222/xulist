@@ -9,5 +9,6 @@ var list = require("../Controller/list");
 
 exports=module.exports = function(app){
     app.get('/',index.view);
-
+    app.post('/login',index.login);
+    app.post('/register',index.register);
 };

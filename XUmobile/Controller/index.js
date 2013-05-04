@@ -9,8 +9,15 @@ module.exports ={
             title:setting.site_title
         });
     },
-    login:function(username,password){
-       var loginres = db.login(username,password);
-       if(loginres) res.redirect("index");
+    login:function(req,res){
+       var loginres = db.login(req.body.username,req.body.password);
+       //if(loginres) res.redirect("index");
+    },
+    register:function(req,res){
+//        if(db.getUserByName(req.body.username,function(err,data){
+//
+//        }))
+       var regres = db.register(req.body.username,req.body.password,req.body.email);
+
     }
 }

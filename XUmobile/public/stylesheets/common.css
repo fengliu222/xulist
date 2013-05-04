@@ -1,0 +1,64 @@
+.common_bg{
+    width:100%;
+    height:100%;
+    background: url("../images/login/login_bg.png");
+    
+
+    -webkit-transition: all .5s linear;
+    -moz-transition: all .5s linear;
+    -ms-transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .5s linear;
+}
+.input_unfocus{
+    width: 291px;
+    height:41px;
+    border: 1px solid #cecece;
+    border-radius: 10px;
+    margin: 0 0 11px 33px;
+    font-family: "微软雅黑";
+    color:#959595;
+    text-indent: 1em;
+
+    -webkit-box-shadow:0 0 0 #999 inset;
+    transition:all .2s ease;
+    -webkit-transition:all .2s ease;
+}
+.input_unfocus:focus{
+    color: #727272;
+    background: #f9f9f9;
+    -webkit-box-shadow:0 2px 1px #999 inset;
+}
+.input_unfocus::-webkit-input-placeholder{
+    color:#959595;
+    text-indent: 1em;
+    font-family: "微软雅黑";
+}
+.btn{
+    width:293px;
+    height:46px;
+    margin: 0 0 11px 33px;
+    border:0;
+    display: block;
+    zoom:1;
+    visibility: visible;
+
+}
+.ava{
+    color:#f9f9f9;
+    font-family: "微软雅黑";
+    text-shadow:1px 1px 1px #313131;
+    background:url(../images/login/buttonlist.png) 0 -47px;
+}
+.ava:hover{
+    background:url(../images/login/buttonlist.png) 0 -126px;
+}
+.unava{
+    color: #4a4a4a;
+    font-family: "微软雅黑";
+    text-shadow:1px 1px 1px #f4f4f4;
+    background:url(../images/login/buttonlist.png) 0 0;
+}
+.unava:hover{
+    background:url(../images/login/buttonlist.png) 0 -174px;
+}
