@@ -8,6 +8,12 @@ module.exports ={
         res.render("login.ejs",{
             title:setting.site_title
         });
+
+    },
+    appview:function(req,res){
+        res.render('app.ejs',{
+            title:setting.site_title
+        })
     },
     login:function(req,res){
        var loginres = db.login(req.body.username,req.body.password);

@@ -56,7 +56,6 @@ module.exports = {
     },
     login:function(username,password){
         var emailreg=/[a-z0-9-]{1,30}@[a-z0-9-]{1,65}.[a-z]{3}/;
-        console.log(username);
         userModel.findOne({
             "$or":[{"username":username},{"email":username}]
         },function(err,user){
