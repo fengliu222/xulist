@@ -14,7 +14,7 @@
   @fluidGridGutterWidth:    percentage(@gridGutterWidth/@gridRowWidth);
   .fluid (@fluidGridColumnWidth, @fluidGridGutterWidth) {
 
-    .spanX () {
+    .spanX (@index) when (@index > 0) {
       (~".span@{index}") { .span(@index); }
       .spanX(@index - 1);
     }
