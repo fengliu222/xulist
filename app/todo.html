@@ -20,20 +20,25 @@
 			<p class="text-center">我在写代码，我未来还要写代码。</p>
 			<nav></nav>
 		</header>
-		<section id="input_block" class="span">
-			<input type="text" id="todo_input" / >
-		</section>
-		<section id="list_block">
-			 
+		<section id="content">
+			<section id="input_block" class="span">
+				<input type="text" id="todo_input" / >
+			</section>
+			<section id="list_block">
+				 
+			</section>
 		</section>
 	</section>
 </body>
-<script id="listItem">
+<script type="text/template" id="listItem">
 	<div class="itemContent">
-		<input class="done" />
-		<span class='content'> {{content}} </span>
-		<span> {{done}} </span>
-		<span class="removeThis">
+		<input type="checkbox" class="done" />
+		<span class='content'> <%= content %> </span>
+		<span class='editBlock'>
+			<input type="text" class="edit" />
+		</span>
+		<span> <%= done %> </span>
+		<span class="removeThis">x</span>
 	</div>
 </script>
 </html>

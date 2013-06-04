@@ -12,7 +12,15 @@ seajs.config({
     },
     'backbone':{
       src: 'js/lib/backbone-min.js',
-      exports: 'backbone'
+      exports: 'Backbone'
+    },
+    '_':{
+      src: 'js/lib/underscore-min.js',
+      exports: '_'
+    },
+    'Store':{
+      src: 'js/lib/backbone.localStorage-min.js',
+      exports: 'Store'
     }
   }
 });
