@@ -24,6 +24,7 @@
 			<section id="input_block" class="span">
 				<input type="text" id="todo_input" / >
 			</section>
+			<div class="clear"></div>
 			<section id="list_block">
 				 
 			</section>
@@ -37,8 +38,8 @@
 		<span class='editBlock'>
 			<input type="text" class="edit" />
 		</span>
-		<span> <%= done %> </span>
-		<span class="removeThis">x</span>
+		<span class='ifFinish'> <%= finish %> </span>
+		<i class="icon-remove"></i>
 	</div>
 </script>
 </html>

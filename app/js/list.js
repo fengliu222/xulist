@@ -19,7 +19,7 @@ define(function(require, exports, module){
 		},
 		toggle:function(){
 			this.save({
-				done:!this.get("finish")
+				finish:!this.get("finish")
 			})
 		},
 		clear:function(){
@@ -49,17 +49,21 @@ define(function(require, exports, module){
 
 	});
 
+
 	var listView = BackBone.View.extend({
 		el:$("#list_block"),
 		initialize:function(){
 			_.bindAll(this,'render','remove');
 			this.model.bind('change',this.render);
 			this.model.bind('distory',this.remove);
+
+			this.input = this.$(".editBlock");
 		},
 		render:function(){
-			var temp = _.template($("#listItem").html(),{content:$("#todo_input").val(),done:false});
+			var temp = _.template($("#listItem").html(),this.model.toJSON());
+			console.log(temp)
 			$(this.el).html(temp);
-			this.input = this.$(".edit");
+			return this;
 		},
 		events:{
 			"click .done" : 	  "toggleDone",
@@ -68,7 +72,7 @@ define(function(require, exports, module){
 			"keyup .edit" : 	  "update"
 		},
 		toggleDone:function(){
-			this.model.toggleDone();
+			this.model.toggle();
 		},
 		remove:function(){
 			this.model.clear();
@@ -87,11 +91,10 @@ define(function(require, exports, module){
 		el: $("#content"),
 		
 		events:{
-			"keyup #todo_input" : "addOne"
+			"keyup #todo_input" : "createOnEnter"
 		},
 
 		initialize:function(){
-			console.log(Store);
 			_.bindAll(this,"addOne","addAll");
 			this.input = $("#todo_input");
 			todos.bind("add",this.addOne);
@@ -99,23 +102,29 @@ define(function(require, exports, module){
 			todos.bind("reset", this.addAll);
 			todos.bind("all", this.render);
 
-			todos.fetch();
+			todos.fetch({
+				success:function(collection,response){
+				}
+			});
+		 
 		},
 		render:function(){
 
 		},
-		addOne:function(e,todo){
+		addOne:function(todo){
+			var view = new listView({
+				model:todo
+			});
 
+			this.$("#list_block").append(view.render().el);
+		},
+		createOnEnter:function(e){
 			if(e.keyCode == 13){
-				var view = new listView({
-					model:listModel
-				});
-				this.$("list_block").append(view.render())
+				todos.create({content:this.input.val()});
 			}
-			
 		},
 		addAll:function(){
-			todos.each(this.addOne)
+			todos.each(this.addOne,this);
 		},
 		newAttr:function(){
 			return {
