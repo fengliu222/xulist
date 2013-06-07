@@ -51,7 +51,6 @@ define(function(require, exports, module){
 
 
 	var listView = BackBone.View.extend({
-		el:$("#list_block"),
 		initialize:function(){
 			_.bindAll(this,'render','remove');
 			this.model.bind('change',this.render);
@@ -61,21 +60,21 @@ define(function(require, exports, module){
 		},
 		render:function(){
 			var temp = _.template($("#listItem").html(),this.model.toJSON());
-			console.log(temp)
 			$(this.el).html(temp);
 			return this;
 		},
 		events:{
 			"click .done" : 	  "toggleDone",
-			"click .removeThis" : "remove",
+			"click .removeThis" : "clear",
 			"dblclick .content" : "activeEdit",
 			"keyup .edit" : 	  "update"
 		},
 		toggleDone:function(){
 			this.model.toggle();
 		},
-		remove:function(){
+		clear:function(){
 			this.model.clear();
+			this.$el.remove();
 		},
 		activeEdit:function(){
 			this.input.addClass("editing");
@@ -100,7 +99,7 @@ define(function(require, exports, module){
 			todos.bind("add",this.addOne);
 			//todos.bind("change", this.addOne);
 			todos.bind("reset", this.addAll);
-			todos.bind("all", this.render);
+			//todos.bind("all", this.render);
 
 			todos.fetch({
 				success:function(collection,response){
@@ -109,21 +108,25 @@ define(function(require, exports, module){
 		 
 		},
 		render:function(){
-
+			console.log("1");
 		},
 		addOne:function(todo){
+
 			var view = new listView({
 				model:todo
 			});
 
-			this.$("#list_block").append(view.render().el);
+			//console.log($("#list_block").html())
+			$("#list_block").prepend(view.render().el);
 		},
 		createOnEnter:function(e){
 			if(e.keyCode == 13){
 				todos.create({content:this.input.val()});
+				this.input.val(" ");
 			}
 		},
 		addAll:function(){
+
 			todos.each(this.addOne,this);
 		},
 		newAttr:function(){

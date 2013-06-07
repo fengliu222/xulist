@@ -5,9 +5,7 @@
 	<title>Document</title>
 	<script src="js/lib/seajs/sea.js"></script>
 	<script src="js/config.js"></script>
-	<script>
-	  seajs.use('js/main');
-	</script>
+
 	<link rel="stylesheet/less" type="text/css"  href="css/veryless/veryless.less">
 	<link rel="stylesheet/less" type="text/css"  href="css/index.less">
 
@@ -39,7 +37,10 @@
 			<input type="text" class="edit" />
 		</span>
 		<span class='ifFinish'> <%= finish %> </span>
-		<i class="icon-remove"></i>
+		<i class="icon-remove removeThis"></i>
 	</div>
 </script>
+	<script>
+	  seajs.use('js/main');
+	</script>
 </html>
