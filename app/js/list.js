@@ -56,10 +56,12 @@ define(function(require, exports, module){
 			this.model.bind('change',this.render);
 			this.model.bind('distory',this.remove);
 
-			this.input = this.$(".editBlock");
+			this.input = this.$(".editBlock input");
+
 		},
 		render:function(){
 			var temp = _.template($("#listItem").html(),this.model.toJSON());
+
 			$(this.el).html(temp);
 			return this;
 		},
@@ -67,7 +69,8 @@ define(function(require, exports, module){
 			"click .done" : 	  "toggleDone",
 			"click .removeThis" : "clear",
 			"dblclick .content" : "activeEdit",
-			"keyup .edit" : 	  "update"
+			"keyup .edit" : 	  "update",
+			"blur .edit" :        "cancelUpdate"
 		},
 		toggleDone:function(){
 			this.model.toggle();
@@ -77,12 +80,21 @@ define(function(require, exports, module){
 			this.$el.remove();
 		},
 		activeEdit:function(){
-			this.input.addClass("editing");
-			this.input.focus();
+			this.$(".content").hide();
+			this.$(".editBlock").show();
+			this.$(".editBlock input").val(this.$(".content").html())
+			this.$(".editBlock input").focus();
 		},
-		update:function(){
-			this.input.removeClass("editing");
-			this.model.save({content:this.input.val()});
+		update:function(e){
+			if(e.keyCode!=13) return;
+
+			this.$(".content").show();
+			this.$(".editBlock").hide();
+			this.model.save({content:this.$(".editBlock input").val()});
+		},
+		cancelUpdate:function(){
+			this.$(".content").show();
+			this.$(".editBlock").hide();
 		}
 	});
 
@@ -116,7 +128,6 @@ define(function(require, exports, module){
 				model:todo
 			});
 
-			//console.log($("#list_block").html())
 			$("#list_block").prepend(view.render().el);
 		},
 		createOnEnter:function(e){

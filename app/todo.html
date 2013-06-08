@@ -30,13 +30,15 @@
 	</section>
 </body>
 <script type="text/template" id="listItem">
+
 	<div class="itemContent">
-		<input type="checkbox" class="done" />
-		<span class='content'> <%= content %> </span>
+		<input type="checkbox" class="done" <%= finish==true ? 'checked=checked' : '' %> />
+		<span class='content <%= finish==true ? "alreadyDone" : "" %>'> <%= content %> </span>
+
 		<span class='editBlock'>
 			<input type="text" class="edit" />
 		</span>
-		<span class='ifFinish'> <%= finish %> </span>
+
 		<i class="icon-remove removeThis"></i>
 	</div>
 </script>

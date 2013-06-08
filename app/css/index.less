@@ -34,7 +34,12 @@
 			display: inline-block;
 		}
 		.editBlock{
+			width:92%;
 			display: none;
+			input{
+			
+				width:92%;
+			}
 		}
 		.ifFinish{
 			display: none;
@@ -42,6 +47,11 @@
 		.editing{
 			display: block;
 		}
+	}
+
+	.itemContent:hover .removeThis{
+			display:inline-block;
+
 	}
 	
 }
@@ -51,4 +61,16 @@
 	height:1px;
 	border:0;
 	display: block;
+}
+.alreadyDone{
+	text-decoration:line-through;
+	background:rgb(233,233,233);
+
+	span{
+		text-decoration:line-through;
+	}
+}
+.removeThis{
+	cursor: pointer;
+	display:none;
 }
