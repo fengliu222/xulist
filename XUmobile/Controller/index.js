@@ -5,9 +5,9 @@ function checkSessionExist(){
 }
 module.exports ={
     view:function(req,res){
-        res.render("login.ejs",{
-            title:setting.site_title
-        });
+         res.render('todo.html',{
+            layout:false
+         });
 
     },
     appview:function(req,res){

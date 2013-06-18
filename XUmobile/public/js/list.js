@@ -6,6 +6,7 @@ define(function(require, exports, module){
 	
 
 	var listModel = BackBone.Model.extend({
+		urlRoot:"",
 		defaults:{	
 			content : 	"Empty Todo",
 			finish : 	false
@@ -30,7 +31,7 @@ define(function(require, exports, module){
 
 	var listCollection = BackBone.Collection.extend({
 		model: listModel,
-		localStorage:new Store("xuTodo"),
+		url:"http://127.0.0.1:3000/list/",
 		done:function(){
 			return this.filter(function(todo){
 				todo.get("finish");
@@ -115,6 +116,7 @@ define(function(require, exports, module){
 
 			todos.fetch({
 				success:function(collection,response){
+					console.log("123");
 				}
 			});
 		 

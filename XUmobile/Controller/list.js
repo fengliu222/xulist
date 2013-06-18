@@ -1,7 +1,21 @@
-/**
- * Created with JetBrains WebStorm.
- * User: Administrator
- * Date: 13-4-7
- * Time: 下午3:41
- * To change this template use File | Settings | File Templates.
- */
+ var db = require('../db');
+var setting = require("../setting");
+
+module.exports = {
+	init : function(req,res){
+		console.log(req);
+	},
+	read : function(req,res){
+		console.log(req);
+		res.end("123");
+	},
+	add : function(req,res){
+
+	},
+	update : function(req,res){
+
+	},
+	delete : function(req,res){
+
+	}
+}

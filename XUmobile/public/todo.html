@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="js/lib/seajs/sea.js"></script>
+	<script src="js/config.js"></script>
+
+	<link rel="stylesheet/less" type="text/css"  href="css/veryless/veryless.less">
+	<link rel="stylesheet/less" type="text/css"  href="css/index.less">
+
+	<script src="js/lib/less.js"></script>
+</head>
+<body>
+	<section id="main">
+		<header id="header" class="hero-unit">
+			<h1 class="text-center">Todo</h1>
+			<p class="text-center">我在写代码，我未来还要写代码。</p>
+			<nav></nav>
+		</header>
+		<section id="content">
+			<section id="input_block" class="span">
+				<input type="text" id="todo_input" / >
+			</section>
+			<div class="clear"></div>
+			<section id="list_block">
+				 
+			</section>
+		</section>
+	</section>
+</body>
+<script type="text/template" id="listItem">
+
+	<div class="itemContent">
+		<input type="checkbox" class="done" <%= finish==true ? 'checked=checked' : '' %> />
+		<span class='content <%= finish==true ? "alreadyDone" : "" %>'> <%= content %> </span>
+
+		<span class='editBlock'>
+			<input type="text" class="edit" />
+		</span>
+
+		<i class="icon-remove removeThis"></i>
+	</div>
+</script>
+	<script>
+	  seajs.use('http://127.0.0.1:3000/js/main');
+	</script>
+</html>
