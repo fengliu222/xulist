@@ -7,6 +7,8 @@ define(function(require, exports, module){
 
 	var listModel = BackBone.Model.extend({
 		urlRoot:"",
+		idAttribute: '_id',
+		url: '/list/',
 		defaults:{	
 			content : 	"Empty Todo",
 			finish : 	false
@@ -31,7 +33,7 @@ define(function(require, exports, module){
 
 	var listCollection = BackBone.Collection.extend({
 		model: listModel,
-		url:"http://127.0.0.1:3000/list/",
+		url:"/list/",
 		done:function(){
 			return this.filter(function(todo){
 				todo.get("finish");
@@ -91,7 +93,9 @@ define(function(require, exports, module){
 
 			this.$(".content").show();
 			this.$(".editBlock").hide();
-			this.model.save({content:this.$(".editBlock input").val()});
+			console.log(this.model.isNew());
+			this.model.set("content",this.$(".editBlock input").val())
+			this.model.save();
 		},
 		cancelUpdate:function(){
 			this.$(".content").show();
@@ -116,7 +120,7 @@ define(function(require, exports, module){
 
 			todos.fetch({
 				success:function(collection,response){
-					console.log("123");
+
 				}
 			});
 		 
