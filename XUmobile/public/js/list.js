@@ -6,23 +6,29 @@ define(function(require, exports, module){
 	
 
 	var listModel = BackBone.Model.extend({
-		urlRoot:"",
+		urlRoot:"/list",
 		idAttribute: '_id',
-		url: '/list/',
+		//url: '/list',
 		defaults:{	
 			content : 	"Empty Todo",
-			finish : 	false
+			finish : 	"false"
 		},
 		initialize:function(){
 			if(!this.get("content")){
 				this.set({
 					"content": this.defaults.content
 				});
+
 			}
 		},
 		toggle:function(){
+			var temp = this.get("finish");
+
+			if(temp == "true") temp = "false";
+			else if(temp == "false") temp = "true";
+
 			this.save({
-				finish:!this.get("finish")
+				finish:temp
 			})
 		},
 		clear:function(){
@@ -33,7 +39,7 @@ define(function(require, exports, module){
 
 	var listCollection = BackBone.Collection.extend({
 		model: listModel,
-		url:"/list/",
+		url:"/list",
 		done:function(){
 			return this.filter(function(todo){
 				todo.get("finish");
@@ -63,6 +69,7 @@ define(function(require, exports, module){
 
 		},
 		render:function(){
+			console.log(this.model.toJSON());
 			var temp = _.template($("#listItem").html(),this.model.toJSON());
 
 			$(this.el).html(temp);
@@ -93,7 +100,7 @@ define(function(require, exports, module){
 
 			this.$(".content").show();
 			this.$(".editBlock").hide();
-			console.log(this.model.isNew());
+
 			this.model.set("content",this.$(".editBlock input").val())
 			this.model.save();
 		},
@@ -133,7 +140,7 @@ define(function(require, exports, module){
 			var view = new listView({
 				model:todo
 			});
-
+			 
 			$("#list_block").prepend(view.render().el);
 		},
 		createOnEnter:function(e){

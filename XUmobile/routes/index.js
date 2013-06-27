@@ -14,9 +14,10 @@ exports=module.exports = function(app){
     app.post('/login',index.login);
     app.post('/register',index.register);
  
- 	app.get("/list/",list.read);
+ 	app.get("/list",list.read);
     app.get("/list/:id",list.readOne);
     app.post("/list",list.add);
-    app.put("/list/",list.update);
+    app.put("/list",list.update);
+    app.delete("/list",list.delete);
     app.delete("/list/:id",list.delete);
 };

@@ -15,7 +15,7 @@ module.exports = {
 		
 	},
 	readOne : function(req,res,cb){
-		var id = req.param.id;
+		var id = req.params.id;
 		listModel.findOne(id,function(data){
 			res.end(data);
 		})
@@ -25,10 +25,17 @@ module.exports = {
 		listModel.addOne(req);
 	},
 	update : function(req,res){
+		console.log(req.body);
+		listModel.update(req,function(err,num){
+			console.log(num);
+			res.end();
+		});
 
-		listModel.update(req);
 	},
 	delete : function(req,res){
-
+		console.log(req);
+		listModel.removeOne(req.params.id,function(){
+			res.end();
+		});
 	}
 }

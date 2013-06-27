@@ -21,7 +21,7 @@ exports = module.exports = {
 		listModel.find({},function(err,data){
 			if(err) throw e;
 			if(cb) cb(data);
-			console.log(data);
+			
 		});
 
 		 
@@ -34,17 +34,34 @@ exports = module.exports = {
 	addOne : function(data){
 		if(data){
 			listModel.create(data.body,function(err,doc){
-				//console.log(doc);
+
 			})
 		}
 	},
-	update : function(data){
-		console.log(data.body._id);
+	update : function(data,cb){
+	
 		//listModel.update()
 
-		 listModel.find({_id:data.body._id},function(data){
-		 		console.log(data);
-
-		 })
+		 listModel.update(
+		 	{
+		 		_id:data.body._id
+		 	},
+		 	{
+			 	$set : {
+			 		content : data.body.content,
+			 		finish :  data.body.finish
+			 	}
+		 	},
+		 	{},
+		 	function(err,num){
+		 		if(err) cb(err,num);
+		 		if(num) cb(null,num);
+		 });
+	},
+	removeOne : function(id,cb){
+		console.log(id);
+		listModel.remove({_id : id},function(){
+			if(cb) cb();
+		});
 	}
 }
